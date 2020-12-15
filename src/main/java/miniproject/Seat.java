@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,6 +19,10 @@ public class Seat {
 	
 	@OneToOne(mappedBy="seat")
 	private Reservation reservation;
+	
+	@ManyToOne
+	@JoinColumn(name = "SCREEN_HALL_ID")
+	private ScreenHall screenhall;
 	
 	public Seat(String name) {
 		this.name = name;
@@ -44,6 +50,14 @@ public class Seat {
 
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
+	}
+
+	public ScreenHall getScreenhall() {
+		return screenhall;
+	}
+
+	public void setScreenhall(ScreenHall screenhall) {
+		this.screenhall = screenhall;
 	}
 
 	

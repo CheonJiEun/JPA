@@ -112,6 +112,9 @@ public class JpaMain {
 			screenhall1.setTotalSeats(100);
 			screenhall1.setTheater(theater1);
 
+			seat1.setScreenhall(screenhall1);
+			seat2.setScreenhall(screenhall1);
+			
 			screenhalls.add(screenhall1);
 			em.persist(screenhall1);
 			
