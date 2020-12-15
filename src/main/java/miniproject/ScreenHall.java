@@ -1,5 +1,8 @@
 package miniproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -59,6 +62,11 @@ public class ScreenHall {
 		this.totalSeats = totalSeats;
 	}
 
+	public Seat registerSeat(String name) {
+		Seat seat = new Seat(name);
+		seat.setScreenhall(this);
+		return seat;
+	}
 	public Theater getTheater() {
 		return theater;
 	}

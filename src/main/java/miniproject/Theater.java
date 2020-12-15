@@ -13,6 +13,7 @@ public class Theater {
 	@Column(name = "THEATER_ID")
 	private Long id; // 영화관 번호
 
+	private String name;
 	private LocalDate closedDay; // 영화관 휴무일
 
 	private Integer TotalStaff; // 영화관 직원 수
@@ -33,6 +34,14 @@ public class Theater {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public LocalDate getClosedDay() {

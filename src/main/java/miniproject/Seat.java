@@ -24,6 +24,10 @@ public class Seat {
 	@JoinColumn(name = "SCREEN_HALL_ID")
 	private ScreenHall screenhall;
 	
+	public Seat() {
+
+	}
+
 	public Seat(String name) {
 		this.name = name;
 	}
