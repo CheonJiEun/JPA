@@ -24,12 +24,11 @@ public class Client extends User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer pay() {
-		Integer total = 0;
-		Integer count = super.getReservation().size();
-		for (int i=0;i<count;i++) {
-			total += super.getReservation().get(i).getPrice();
-		}
-		return total;
+	public Billing pay(Theater theater, Reservation reservation, Account account) {
+		Billing billing = new Billing(theater.getName(), reservation.getPrice());
+		billing.setAccount(account);
+		billing.check();
+		reservation.setBilling(billing);
+		return billing;
 	}
 }

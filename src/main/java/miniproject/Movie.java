@@ -29,6 +29,10 @@ public class Movie extends BaseEntity {
    private LocalTime runTime; // 상영 시간
 
    private Integer totalAudience;
+   
+	@OneToMany(mappedBy="movie")
+	private List<MovieSchedule> ms = new ArrayList<MovieSchedule>();
+
 
    // 게터, 세터
    public Long getId() {
@@ -102,4 +106,13 @@ public class Movie extends BaseEntity {
    public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<MovieSchedule> getMs() {
+		return ms;
+	}
+	
+	public void setMs(List<MovieSchedule> ms) {
+		this.ms = ms;
+	}
+   
 }

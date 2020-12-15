@@ -20,6 +20,13 @@ public class ScreenHall {
 	@ManyToOne
 	@JoinColumn(name = "THEATER_ID")
 	private Theater theater;
+	
+	@OneToMany(mappedBy="screenhall")
+	private List<Seat> seat = new ArrayList<Seat>();
+	
+	@OneToMany
+	@JoinColumn(name="SCREEN_HALL_ID")
+	private List<MovieSchedule> ms = new ArrayList<MovieSchedule>();
 
 	// 상영관 -- 생성자
 	public ScreenHall() {
@@ -62,17 +69,28 @@ public class ScreenHall {
 		this.totalSeats = totalSeats;
 	}
 
-	public Seat registerSeat(String name) {
-		Seat seat = new Seat(name);
-		seat.setScreenhall(this);
-		return seat;
-	}
 	public Theater getTheater() {
 		return theater;
 	}
 
 	public void setTheater(Theater theater) {
 		this.theater = theater;
+	}
+
+	public List<Seat> getSeat() {
+		return seat;
+	}
+
+	public void setSeat(List<Seat> seat) {
+		this.seat = seat;
+	}
+
+	public List<MovieSchedule> getMs() {
+		return ms;
+	}
+
+	public void setMs(List<MovieSchedule> ms) {
+		this.ms = ms;
 	}
 
 }

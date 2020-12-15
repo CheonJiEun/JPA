@@ -67,16 +67,26 @@ public class JpaMain {
 			em.persist(screenhall1);
 			
 			// 좌석 등록 - 10개
-			Seat seat1 = screenhall1.registerSeat("A1");
-			Seat seat2 = screenhall1.registerSeat("A2");
-			Seat seat3 = screenhall1.registerSeat("A3");
-			Seat seat4 = screenhall1.registerSeat("A4");
-			Seat seat5 = screenhall1.registerSeat("A5");
-			Seat seat6 = screenhall1.registerSeat("A6");
-			Seat seat7 = screenhall1.registerSeat("A7");
-			Seat seat8 = screenhall1.registerSeat("A8");
-			Seat seat9 = screenhall1.registerSeat("A9");
-			Seat seat10 = screenhall1.registerSeat("A10");
+			Seat seat1 = new Seat("A1");
+			Seat seat2 = new Seat("A2");
+			Seat seat3 = new Seat("A3");
+			Seat seat4 = new Seat("A4");
+			Seat seat5 = new Seat("A5");
+			Seat seat6 = new Seat("A6");
+			Seat seat7 = new Seat("A7");
+			Seat seat8 = new Seat("A8");
+			Seat seat9 = new Seat("A9");
+			Seat seat10 = new Seat("A10");
+			seat1.setScreenhall(screenhall1);
+			seat2.setScreenhall(screenhall1);
+			seat3.setScreenhall(screenhall1);
+			seat4.setScreenhall(screenhall1);
+			seat5.setScreenhall(screenhall1);
+			seat6.setScreenhall(screenhall1);
+			seat7.setScreenhall(screenhall1);
+			seat8.setScreenhall(screenhall1);
+			seat9.setScreenhall(screenhall1);
+			seat10.setScreenhall(screenhall1);
 			em.persist(seat1);em.persist(seat2);em.persist(seat3);em.persist(seat4);em.persist(seat5);
 			em.persist(seat6);em.persist(seat7);em.persist(seat8);em.persist(seat9);em.persist(seat10);
 
@@ -100,26 +110,45 @@ public class JpaMain {
 
 			//System.out.println("====== seat: "+seat1.getRs().size());
 			
-			Reservation reservation1 = new Reservation(Type.성인);
+			// 예매1 - 3자리
+			Reservation reservation1 = new Reservation(Type.성인, 2, Type.어린이, 1);
 			reservation1.setUser(client);
-			reservation1.setSeat(seat5);
 			em.persist(reservation1);
-			Reservation reservation2 = new Reservation(Type.청소년);
+			ReservationSeat rs1 = new ReservationSeat();
+			rs1.setReservation(reservation1);
+			rs1.setSeat(seat5);
+			em.persist(rs1);
+			ReservationSeat rs2 = new ReservationSeat();
+			rs2.setReservation(reservation1);
+			rs2.setSeat(seat6);
+			em.persist(rs2);
+			ReservationSeat rs3 = new ReservationSeat();
+			rs3.setReservation(reservation1);
+			rs3.setSeat(seat7);
+			em.persist(rs3);
+			
+			// 가장 첫번째 계좌로 계산
+			Billing billing1 = client.pay(theater, reservation1, client.getAccount().get(0));
+			em.persist(billing1);
+			
+			
+			
+			
+			// 예매2 - 1자리
+			Reservation reservation2 = new Reservation(Type.청소년, 1);
 			reservation2.setUser(client);
-			reservation2.setSeat(seat6);
 			em.persist(reservation2);
+			ReservationSeat rs4 = new ReservationSeat();
+			rs4.setReservation(reservation2);
+			rs4.setSeat(seat8);
+			em.persist(rs4);
+	
+			// 가장 첫번째 계좌로 계산
+			Billing billing2 = client.pay(theater, reservation2, client.getAccount().get(0));
+			em.persist(billing2);
 			
+
 			
-			System.out.println("==== reservation count : "+client.getReservation().size());
-			
-			System.out.println("======: "+client.pay());
-			
-			Billing billing = new Billing(theater.getName(), client.pay());
-			billing.setAccount(Caccount1);
-			billing.check();
-			reservation1.setBilling(billing);
-			reservation2.setBilling(billing);
-			em.persist(billing);
 			
 
 			tx.commit();
