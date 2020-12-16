@@ -13,6 +13,7 @@ public class Theater {
 	@Column(name = "THEATER_ID")
 	private Long id; // 영화관 번호
 
+	private String name;
 	private LocalDate closedDay; // 영화관 휴무일
 
 	private Integer TotalStaff; // 영화관 직원 수
@@ -20,6 +21,9 @@ public class Theater {
 
 	@OneToMany(mappedBy = "theater")
 	private List<ScreenHall> screenhalls = new ArrayList<ScreenHall>();
+
+	@OneToMany(mappedBy = "theater")
+	private List<Staff> staffs = new ArrayList<Staff>();
 
 	// 영화관 -- 생성자
 	public Theater() {
@@ -35,6 +39,14 @@ public class Theater {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public LocalDate getClosedDay() {
 		return closedDay;
 	}
@@ -47,8 +59,10 @@ public class Theater {
 		return TotalStaff;
 	}
 
-	public void setTotalStaff(Integer totalStaff) {
-		TotalStaff = totalStaff;
+	public void setTotalStaff(List<Staff> staffs) {
+//      TotalStaff = totalStaff;
+		TotalStaff = 0; /// yeom
+		TotalStaff = staffs.size(); /// yeom
 	}
 
 	public Integer getTotalAmounts() {
@@ -67,5 +81,12 @@ public class Theater {
 		this.screenhalls = screenhalls;
 	}
 
-	
+	public List<Staff> getStaffs() {
+		return staffs;
+	}
+
+	public void setStaffs(List<Staff> staffs) {
+		this.staffs = staffs;
+	}
+
 }

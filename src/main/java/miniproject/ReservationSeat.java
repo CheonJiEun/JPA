@@ -42,7 +42,11 @@ public class ReservationSeat {
 
 
 	public void setReservation(Reservation reservation) {
+		if (this.reservation != null) {
+			this.reservation.getRs().remove(this);
+		}
 		this.reservation = reservation;
+		reservation.getRs().add(this);
 	}
 
 

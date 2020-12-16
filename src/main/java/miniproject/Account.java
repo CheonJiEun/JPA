@@ -73,7 +73,6 @@ public class Account {
 		}
 		this.user = user;
 		user.getAccount().add(this);
-	}
-	
-	
+	}	
 }
+

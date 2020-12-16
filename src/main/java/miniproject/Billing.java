@@ -105,6 +105,4 @@ public class Billing {
 		this.status = status;
 	}
 	
-	
-	
 }
