@@ -10,9 +10,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 class Type {
-	static Integer ¼ºÀÎ = 9000;
-	static Integer Ã»¼Ò³â = 8000;
-	static Integer ¾î¸°ÀÌ = 6000;
+	static Integer ì„±ì¸ = 9000;
+	static Integer ì²­ì†Œë…„ = 8000;
+	static Integer ì–´ë¦°ì´ = 6000;
 }
 
 public class JpaMain {
@@ -26,9 +26,9 @@ public class JpaMain {
 		try {
 			tx.begin();
 			
-			//°ü¸®ÀÚ
+			//ê´€ë¦¬ì
 			Manager manager = new Manager();
-			manager.setName("°ü¸®ÀÚ");
+			manager.setName("ê´€ë¦¬ì");
 			manager.setPassword("12345");
 			manager.setPhoneNumber("010-1234-5678");
 			manager.setWorkPeriod(new Period(LocalDate.of(2020, 1, 1), LocalDate.of(2023, 1, 1)));
@@ -36,15 +36,15 @@ public class JpaMain {
 			System.out.println("==== Manager isWork : "+ MisWork);
 			em.persist(manager);
 			
-			//°ü¸®ÀÚ °èÁÂ
-			Account Maccount = new Account("³óÇù","32141235432",100000);
+			//ê´€ë¦¬ì ê³„ì¢Œ
+			Account Maccount = new Account("ë†í˜‘","32141235432",100000);
 			Maccount.setUser(manager);
 			em.persist(Maccount);
 			
 			
-			//Á÷¿ø1
+			//ì§ì›1
 			Staff staff = new Staff();
-			staff.setName("Á÷¿ø1");
+			staff.setName("ì§ì›1");
 			staff.setPassword("54321");
 			staff.setPhoneNumber("010-1111-1111");
 			staff.setWorkPeriod(new Period(LocalDate.of(2020, 12, 1), LocalDate.of(2020, 12, 31)));
@@ -52,21 +52,39 @@ public class JpaMain {
 			System.out.println("==== Staff isWork : "+ SisWork);
 			em.persist(staff);
 			
-			//Á÷¿ø1 °èÁÂ
-			Account Saccount1 = new Account("±¹¹Î","454132454355",100000);
+			//ì§ì›1 ê³„ì¢Œ
+			Account Saccount1 = new Account("êµ­ë¯¼","454132454355",100000);
 			Saccount1.setUser(staff);
 			em.persist(Saccount1);
 			
 			
-			// ¿µÈ­°ü µî·Ï
-			Theater theater = manager.registerTheater("±¸¹Ì¿µÈ­°ü");
+			// ì˜í™”ê´€ ë“±ë¡
+			Theater theater = manager.registerTheater("êµ¬ë¯¸ì˜í™”ê´€", staffs1); /// yeom
+			staff.setTheater(theater); /// yeom
+			staffs1.add(staff); /// yeom
+			theater.setStaffs(staffs1); /// yeom
+			theater.setTotalStaff(staffs1); /// yeom
 			em.persist(theater);
 			
-			// »ó¿µ°ü µî·Ï - 1°³
-			ScreenHall screenhall1 = manager.registerScreenHall(theater, "»ó¿µ°ü1","»ó¿µ°ü1 ÀÔ´Ï´Ù.");
+			///////// yeom
+			// ì˜í™”1
+			Movie movie1 = new Movie(manager, "ë…¸íŠ¸ë¶", "ë…¸íŠ¸ë¶ ê°ë…", LocalDate.of(2020, 11, 20));
+			movie1.setStory("ë¡œë§¨ìŠ¤");
+			em.persist(movie1);
+			
+			// ì˜í™”1 ìŠ¤ì¼€ì¤„
+			List<MovieSchedule> mss1 = new ArrayList<MovieSchedule>();
+			MovieSchedule movieschedule1 = manager.registerMovieSchedule(mss1, movie1, LocalTime.of(16, 30), LocalTime.of(19, 15));
+			MovieSchedule movieschedule2 = manager.registerMovieSchedule(mss1, movie1, LocalTime.of(19, 30), LocalTime.of(22, 15));
+			em.persist(movieschedule1);
+			em.persist(movieschedule2);
+			/////////
+			
+			// ìƒì˜ê´€ ë“±ë¡ - 1ê°œ
+			ScreenHall screenhall1 = manager.registerScreenHall(theater, "ìƒì˜ê´€1","ìƒì˜ê´€1 ì…ë‹ˆë‹¤.");
 			em.persist(screenhall1);
 			
-			// ÁÂ¼® µî·Ï - 10°³
+			// ì¢Œì„ ë“±ë¡ - 10ê°œ
 			Seat seat1 = new Seat("A1");
 			Seat seat2 = new Seat("A2");
 			Seat seat3 = new Seat("A3");
@@ -91,18 +109,18 @@ public class JpaMain {
 			em.persist(seat6);em.persist(seat7);em.persist(seat8);em.persist(seat9);em.persist(seat10);
 
 			
-			//°í°´
+			//ê³ ê°
 			//if (MisWork && SisWork)
 			Client client = new Client();
 			client.setRpn("991125-*******");
 			client.setEmail("wldms01125@kumoh.ac.kr");
-			client.setName("ÃµÁöÀº");
+			client.setName("ì²œì§€ì€");
 			client.setPassword("5781");
 			client.setPhoneNumber("010-8645-1131");
 			em.persist(client);
 			
-			//°í°´°èÁÂ
-			Account Caccount1 = new Account("Ä«Ä«¿ÀÆäÀÌ","78544521354",100000);
+			//ê³ ê°ê³„ì¢Œ
+			Account Caccount1 = new Account("ì¹´ì¹´ì˜¤í˜ì´","78544521354",100000);
 			Caccount1.setUser(client);
 			em.persist(Caccount1);
 			
@@ -110,8 +128,8 @@ public class JpaMain {
 
 			//System.out.println("====== seat: "+seat1.getRs().size());
 			
-			// ¿¹¸Å1 - 3ÀÚ¸®
-			Reservation reservation1 = new Reservation(Type.¼ºÀÎ, 2, Type.¾î¸°ÀÌ, 1);
+			// ì˜ˆë§¤1 - 3ìë¦¬
+			Reservation reservation1 = new Reservation(Type.ì„±ì¸, 2, Type.ì–´ë¦°ì´, 1);
 			reservation1.setUser(client);
 			em.persist(reservation1);
 			ReservationSeat rs1 = new ReservationSeat();
@@ -127,15 +145,15 @@ public class JpaMain {
 			rs3.setSeat(seat7);
 			em.persist(rs3);
 			
-			// °¡Àå Ã¹¹øÂ° °èÁÂ·Î °è»ê
+			// ê°€ì¥ ì²«ë²ˆì§¸ ê³„ì¢Œë¡œ ê³„ì‚°
 			Billing billing1 = client.pay(theater, reservation1, client.getAccount().get(0));
 			em.persist(billing1);
 			
 			
 			
 			
-			// ¿¹¸Å2 - 1ÀÚ¸®
-			Reservation reservation2 = new Reservation(Type.Ã»¼Ò³â, 1);
+			// ì˜ˆë§¤2 - 1ìë¦¬
+			Reservation reservation2 = new Reservation(Type.ì²­ì†Œë…„, 1);
 			reservation2.setUser(client);
 			em.persist(reservation2);
 			ReservationSeat rs4 = new ReservationSeat();
@@ -143,7 +161,7 @@ public class JpaMain {
 			rs4.setSeat(seat8);
 			em.persist(rs4);
 	
-			// °¡Àå Ã¹¹øÂ° °èÁÂ·Î °è»ê
+			// ê°€ì¥ ì²«ë²ˆì§¸ ê³„ì¢Œë¡œ ê³„ì‚°
 			Billing billing2 = client.pay(theater, reservation2, client.getAccount().get(0));
 			em.persist(billing2);
 			
