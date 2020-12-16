@@ -41,6 +41,10 @@ public class Reservation {
 	@OneToMany(mappedBy="reservation")
 	private List<ReservationSeat> rs = new ArrayList<ReservationSeat>();
 	
+	@ManyToOne
+	@JoinColumn(name = "MOVIE_SCHEDULE_ID")
+	private MovieSchedule ms;
+	   
 	public Reservation() {
 		this.reserveDate = LocalDate.now();
 		this.price = 9000; //타입 지정안하면 성인 비용으로 지불
@@ -139,5 +143,13 @@ public class Reservation {
 
 	public void setRs(List<ReservationSeat> rs) {
 		this.rs = rs;
+	}
+
+	public MovieSchedule getMs() {
+		return ms;
+	}
+
+	public void setMs(MovieSchedule ms) {
+		this.ms = ms;
 	}
 }

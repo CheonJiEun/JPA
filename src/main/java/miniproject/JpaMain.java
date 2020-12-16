@@ -141,7 +141,7 @@ public class JpaMain {
 	         // 예매1 - 3자리
 	         Reservation reservation1 = new Reservation(Type.성인, 2, Type.어린이, 1);
 	         reservation1.setUser(client);
-	         movieschedule1.setReservation(reservation1);
+	         reservation1.setMs(movieschedule1);
 	         em.persist(reservation1);
 	         ReservationSeat rs1 = new ReservationSeat();
 	         rs1.setReservation(reservation1);
@@ -164,7 +164,7 @@ public class JpaMain {
 	         // 예매2 - 1자리
 	         Reservation reservation2 = new Reservation(Type.청소년, 1);
 	         reservation2.setUser(client);
-	         movieschedule1.setReservation(reservation1);
+	         reservation2.setMs(movieschedule1);
 	         em.persist(reservation2);
 	         ReservationSeat rs4 = new ReservationSeat();
 	         rs4.setReservation(reservation2);

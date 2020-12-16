@@ -23,10 +23,6 @@ public class MovieSchedule extends BaseEntity {
 	private LocalTime startTime; // 상영 시작시간
 	private LocalTime endTime; // 상영 종료시간
 
-	@ManyToOne
-	@JoinColumn(name = "RESERVATION_ID")
-	private Reservation reservation;
-
 	// 게터, 세터
 	public Long getId() {
 		return id;
@@ -64,11 +60,4 @@ public class MovieSchedule extends BaseEntity {
 		this.endTime = endTime;
 	}
 
-	public Reservation getReservation() {
-		return reservation;
-	}
-
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
-	}
 }
