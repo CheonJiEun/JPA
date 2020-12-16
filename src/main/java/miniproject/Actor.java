@@ -9,6 +9,19 @@ public class Actor {
    private String characterName;
    private String role;
 
+   /// yeom
+   // »ý¼ºÀÚ
+   public Actor() {
+   }
+
+   public Actor(String name, String characterName, String role) {
+      super();
+      this.name = name;
+      this.characterName = characterName;
+      this.role = role;
+   }
+   ///
+   
    public Long getId() {
       return id;
    }

@@ -22,8 +22,10 @@ public class Theater {
 	@OneToMany(mappedBy = "theater")
 	private List<ScreenHall> screenhalls = new ArrayList<ScreenHall>();
 
-	@OneToMany(mappedBy = "theater")
-	private List<Staff> staffs = new ArrayList<Staff>();
+	/*
+	 * @OneToMany(mappedBy = "theater") private List<Staff> staffs = new
+	 * ArrayList<Staff>();
+	 */
 
 	// 영화관 -- 생성자
 	public Theater() {
@@ -81,12 +83,12 @@ public class Theater {
 		this.screenhalls = screenhalls;
 	}
 
-	public List<Staff> getStaffs() {
-		return staffs;
-	}
-
-	public void setStaffs(List<Staff> staffs) {
-		this.staffs = staffs;
-	}
+//   public List<Staff> getStaffs() {
+//      return staffs;
+//   }
+//
+//   public void setStaffs(List<Staff> staffs) {
+//      this.staffs = staffs;
+//   }
 
 }
