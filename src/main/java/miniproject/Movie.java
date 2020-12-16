@@ -9,110 +9,132 @@ import javax.persistence.*;
 
 @Entity
 public class Movie extends BaseEntity {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "MOVIE_ID")
-   private Long id; // 영화 번호
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MOVIE_ID")
+	private Long id; // 영화 번호
 
-   private String name; // 영화 이름
-   private String director; // 감독
-   private String story; // 줄거리
-   private Integer limitAge; // 나이 제한
+	private String name; // 영화 이름
+	private String director; // 감독
+	private String story; // 줄거리
+	private Integer limitAge; // 나이 제한
 
-   @ElementCollection
-   @CollectionTable(
-		   name="ACTOR",
-		   joinColumns = @JoinColumn(name="MOVIE_ID"))
-   private List<Actor> actors = new ArrayList<Actor>();
+	@ElementCollection
+	@CollectionTable(name = "ACTOR", joinColumns = @JoinColumn(name = "MOVIE_ID"))
+	private List<Actor> actors = new ArrayList<Actor>();
 
-   private LocalDate openDay; // 개봉일
-   private LocalTime runTime; // 상영 시간
+	private LocalDate openDay; // 개봉일
+	private LocalTime runTime; // 상영 시간
 
-   private Integer totalAudience;
-   
-	@OneToMany(mappedBy="movie")
+	private Integer totalAudience;
+
+	@OneToMany(mappedBy = "movie")
 	private List<MovieSchedule> ms = new ArrayList<MovieSchedule>();
 
+	/////////// jieun///////////getter,setter도 추가
+	@OneToMany(mappedBy = "movie")
+	private List<MovieReview> mr = new ArrayList<MovieReview>();
 
-   // 게터, 세터
-   public Long getId() {
-      return id;
-   }
+	@OneToOne
+	@JoinColumn(name = "STATISTICS_ID")
+	private Statistics statistics;
+	///////////jieun///////////
 
-   public void setId(Long id) {
-      this.id = id;
-   }
+	// 게터, 세터
+	public Long getId() {
+		return id;
+	}
 
-   public String getDirector() {
-      return director;
-   }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-   public void setDirector(String director) {
-      this.director = director;
-   }
+	public String getDirector() {
+		return director;
+	}
 
-   public String getStory() {
-      return story;
-   }
+	public void setDirector(String director) {
+		this.director = director;
+	}
 
-   public void setStory(String story) {
-      this.story = story;
-   }
+	public String getStory() {
+		return story;
+	}
 
-   public Integer getLimitAge() {
-      return limitAge;
-   }
+	public void setStory(String story) {
+		this.story = story;
+	}
 
-   public void setLimitAge(Integer limitAge) {
-      this.limitAge = limitAge;
-   }
+	public Integer getLimitAge() {
+		return limitAge;
+	}
 
-   public LocalDate getOpenDay() {
-      return openDay;
-   }
+	public void setLimitAge(Integer limitAge) {
+		this.limitAge = limitAge;
+	}
 
-   public void setOpenDay(LocalDate openDay) {
-      this.openDay = openDay;
-   }
+	public LocalDate getOpenDay() {
+		return openDay;
+	}
 
-   public LocalTime getRunTime() {
-      return runTime;
-   }
+	public void setOpenDay(LocalDate openDay) {
+		this.openDay = openDay;
+	}
 
-   public void setRunTime(LocalTime runTime) {
-      this.runTime = runTime;
-   }
+	public LocalTime getRunTime() {
+		return runTime;
+	}
 
-   public Integer getTotalAudience() {
-      return totalAudience;
-   }
+	public void setRunTime(LocalTime runTime) {
+		this.runTime = runTime;
+	}
 
-   public void setTotalAudience(Integer totalAudience) {
-      this.totalAudience = totalAudience;
-   }
+	public Integer getTotalAudience() {
+		return totalAudience;
+	}
 
-   public List<Actor> getActors() {
-      return actors;
-   }
+	public void setTotalAudience(Integer totalAudience) {
+		this.totalAudience = totalAudience;
+	}
 
-   public void setActors(List<Actor> actors) {
-      this.actors = actors;
-   }
+	public List<Actor> getActors() {
+		return actors;
+	}
 
-   public String getName() {
-      return name;
-   }
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
 
-   public void setName(String name) {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	public List<MovieSchedule> getMs() {
 		return ms;
 	}
-	
+
 	public void setMs(List<MovieSchedule> ms) {
 		this.ms = ms;
 	}
-   
+
+	public List<MovieReview> getMr() {
+		return mr;
+	}
+
+	public void setMr(List<MovieReview> mr) {
+		this.mr = mr;
+	}
+
+	public Statistics getStatistics() {
+		return statistics;
+	}
+
+	public void setStatistics(Statistics statistics) {
+		this.statistics = statistics;
+	}
+
 }
