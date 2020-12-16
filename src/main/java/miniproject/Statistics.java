@@ -15,6 +15,11 @@ public class Statistics {
 
 	private Integer totalClient;
 
+	
+	public Statistics() {
+		this.totalClient = 0;
+	}
+
 	public Long getId() {
 		return id;
 	}

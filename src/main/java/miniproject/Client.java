@@ -1,7 +1,11 @@
 package miniproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("C")
@@ -11,6 +15,8 @@ public class Client extends User {
 	private String rpn;
 	private String email;
 	
+	@OneToMany(mappedBy="client")
+	private List<MovieReview> mr = new ArrayList<MovieReview>();
 	
 	public String getRpn() {
 		return rpn;

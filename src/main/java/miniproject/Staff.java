@@ -13,6 +13,7 @@ public class Staff extends User {
 	@Embedded
 	private Period workPeriod;
 
+	
 	public Period getWorkPeriod() {
 		return workPeriod;
 	}

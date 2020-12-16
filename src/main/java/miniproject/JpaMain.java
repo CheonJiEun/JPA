@@ -69,6 +69,9 @@ public class JpaMain {
 	         Movie movie1 = new Movie(manager, "노트북", "노트북 감독", LocalDate.of(2020, 11, 20));
 	         movie1.setStory("로맨스");
 	         em.persist(movie1);
+	         Statistics statistics = new Statistics();
+	         movie1.setStatistics(statistics);
+	         em.persist(statistics);
 
 	         // 영화1 스케줄
 	         List<MovieSchedule> mss1 = new ArrayList<MovieSchedule>();
@@ -84,6 +87,7 @@ public class JpaMain {
 	         ScreenHall screenhall1 = manager.registerScreenHall(theater, "상영관1", "상영관1 입니다.");
 	         screenhall1.setMs(mss1); // ms - screenhall 연결
 	         em.persist(screenhall1);
+
 
 	         // 좌석 등록 - 10개
 	         Seat seat1 = new Seat("A1");
@@ -137,6 +141,7 @@ public class JpaMain {
 	         // 예매1 - 3자리
 	         Reservation reservation1 = new Reservation(Type.성인, 2, Type.어린이, 1);
 	         reservation1.setUser(client);
+	         movieschedule1.setReservation(reservation1);
 	         em.persist(reservation1);
 	         ReservationSeat rs1 = new ReservationSeat();
 	         rs1.setReservation(reservation1);
@@ -150,6 +155,7 @@ public class JpaMain {
 	         rs3.setReservation(reservation1);
 	         rs3.setSeat(seat7);
 	         em.persist(rs3);
+	         
 
 	         // 가장 첫번째 계좌로 계산
 	         Billing billing1 = client.pay(theater, reservation1, client.getAccount().get(0));
@@ -158,6 +164,7 @@ public class JpaMain {
 	         // 예매2 - 1자리
 	         Reservation reservation2 = new Reservation(Type.청소년, 1);
 	         reservation2.setUser(client);
+	         movieschedule1.setReservation(reservation1);
 	         em.persist(reservation2);
 	         ReservationSeat rs4 = new ReservationSeat();
 	         rs4.setReservation(reservation2);
@@ -176,10 +183,13 @@ public class JpaMain {
 			System.out.println("예매일 : "+client.getReservation().get(0).getReserveDate());
 			System.out.print("예매좌석 : ");
 			for (int i=0;i<client.getReservation().get(0).getSeatNum();i++)
-			{
 				System.out.print(client.getReservation().get(0).getRs().get(i).getSeat().getName()+" ");
-			}
 			System.out.println();
+			System.out.println("상영관 : "+client.getReservation().get(0).getRs().get(0).getSeat().getScreenhall().getName());
+//			System.out.println("상영영화 : "+client.getReservation().get(0).getRs().get(0).getMs().getMovie().getName());
+//			System.out.println("상영시간 : "+client.getReservation().get(0).getRs().get(0).getMs().getStartTime()+" ~ "+client.getReservation().get(0).getRs().get(0).getMs().getEndTime());
+			
+			
 			
 			//System.out.println("고객1의 예매2 정보 : "+client.getReservation().get(1));
 

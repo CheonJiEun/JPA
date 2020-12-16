@@ -25,6 +25,10 @@ public class MovieReview extends BaseEntity {
 
 	private Integer score;
 
+	@ManyToOne
+	@JoinColumn(name="USER_ID")
+	private Client client;
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,7 +42,11 @@ public class MovieReview extends BaseEntity {
 	}
 
 	public void setMovie(Movie movie) {
+		if (this.movie != null) {
+			this.movie.getMr().remove(this);
+		}
 		this.movie = movie;
+		movie.getMr().add(this);
 	}
 
 	public String getContent() {

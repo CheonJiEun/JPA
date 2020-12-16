@@ -74,7 +74,11 @@ public class ScreenHall {
 	}
 
 	public void setTheater(Theater theater) {
+		if (this.theater !=null) {
+			this.theater.getScreenhalls().remove(this);
+		}
 		this.theater = theater;
+		theater.getScreenhalls().add(this);
 	}
 
 	public List<Seat> getSeat() {

@@ -31,6 +31,11 @@ public abstract class User {
 	@OneToMany(mappedBy = "user")
 	private List<Reservation> reservation = new ArrayList<Reservation>();
 	
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Long getId() {
 		return id;
 	}

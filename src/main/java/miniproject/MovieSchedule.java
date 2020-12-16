@@ -41,7 +41,11 @@ public class MovieSchedule extends BaseEntity {
 	}
 
 	public void setMovie(Movie movie) {
+		if (this.movie != null) {
+			this.movie.getMs().remove(this);
+		}
 		this.movie = movie;
+		movie.getMs().add(this);
 	}
 
 	public LocalTime getStartTime() {
