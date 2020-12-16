@@ -52,9 +52,7 @@ public class Movie extends BaseEntity {
 		this.setCreatedDate(LocalDateTime.now());
 		this.setCreatedBy(manager.getName());
 	}
-	///
 
-	// 게터, 세터
 	public Long getId() {
 		return id;
 	}

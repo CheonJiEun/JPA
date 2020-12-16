@@ -11,7 +11,6 @@ public abstract class BaseEntity {
 	private String lastModifiedBy;
 	private LocalDateTime lastModifiedDate;
 	
-	///////////jieun///////////
 	public BaseEntity() {
 		super();
 		// TODO Auto-generated constructor stub

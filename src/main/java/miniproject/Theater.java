@@ -22,17 +22,11 @@ public class Theater {
 	@OneToMany(mappedBy = "theater")
 	private List<ScreenHall> screenhalls = new ArrayList<ScreenHall>();
 
-	/*
-	 * @OneToMany(mappedBy = "theater") private List<Staff> staffs = new
-	 * ArrayList<Staff>();
-	 */
 
-	// 영화관 -- 생성자
 	public Theater() {
 		super();
 	}
 
-	// 영화관 -- getter, setter
 	public Long getId() {
 		return id;
 	}
@@ -62,9 +56,8 @@ public class Theater {
 	}
 
 	public void setTotalStaff(List<Staff> staffs) {
-//      TotalStaff = totalStaff;
-		TotalStaff = 0; /// yeom
-		TotalStaff = staffs.size(); /// yeom
+		TotalStaff = 0;
+		TotalStaff = staffs.size();
 	}
 
 	public Integer getTotalAmounts() {
@@ -82,13 +75,5 @@ public class Theater {
 	public void setScreenhalls(List<ScreenHall> screenhalls) {
 		this.screenhalls = screenhalls;
 	}
-
-//   public List<Staff> getStaffs() {
-//      return staffs;
-//   }
-//
-//   public void setStaffs(List<Staff> staffs) {
-//      this.staffs = staffs;
-//   }
 
 }

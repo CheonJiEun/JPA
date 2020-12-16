@@ -28,7 +28,7 @@ public class ScreenHall {
 	@JoinColumn(name="SCREEN_HALL_ID")
 	private List<MovieSchedule> ms = new ArrayList<MovieSchedule>();
 
-	// 상영관 -- 생성자
+
 	public ScreenHall() {
 	}
 

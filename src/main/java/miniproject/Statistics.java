@@ -20,6 +20,10 @@ public class Statistics {
 		this.totalClient = 0;
 	}
 
+	public void total(Integer num) {
+		this.totalClient += num;
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -28,7 +28,7 @@ public class Manager extends User {
       theater.setClosedDay(LocalDate.of(2020, 12, 25));
       theater.setName(name);
       theater.setTotalAmounts(0);
-      theater.setTotalStaff(staffs); /// yeom
+      theater.setTotalStaff(staffs);
       return theater;
    }
 
@@ -41,7 +41,7 @@ public class Manager extends User {
       return screenhall;
    }
 
-   /// yeom
+
    public MovieSchedule registerMovieSchedule(List<MovieSchedule> mss, Movie movie, LocalTime startTime,
          LocalTime endTime) {
       MovieSchedule movieschedule = new MovieSchedule();

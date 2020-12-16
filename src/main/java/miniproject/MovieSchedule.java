@@ -11,11 +11,6 @@ public class MovieSchedule extends BaseEntity {
 	@Column(name = "MOVIE_SCHEDULE_ID")
 	private Long id; // 영화 스케줄 번호
 
-	// 상영관->스케쥴 일대다 단방향이기에 필요없지않을까?!
-//   @ManyToOne
-//   @JoinColumn(name = "SCREEN_HALL_ID")
-//   private ScreenHall screenhall; // 상영관 번호
-
 	@ManyToOne
 	@JoinColumn(name = "MOVIE_ID")
 	private Movie movie; // 영화 번호
@@ -23,7 +18,7 @@ public class MovieSchedule extends BaseEntity {
 	private LocalTime startTime; // 상영 시작시간
 	private LocalTime endTime; // 상영 종료시간
 
-	// 게터, 세터
+
 	public Long getId() {
 		return id;
 	}

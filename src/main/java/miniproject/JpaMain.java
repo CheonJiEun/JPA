@@ -42,7 +42,7 @@ public class JpaMain {
 	         em.persist(Maccount);
 
 	         // 직원1
-	         List<Staff> staffs1 = new ArrayList<Staff>(); /// yeom
+	         List<Staff> staffs1 = new ArrayList<Staff>();
 	         Staff staff = new Staff();
 	         staff.setName("직원1");
 	         staff.setPassword("54321");
@@ -58,13 +58,13 @@ public class JpaMain {
 	         em.persist(Saccount1);
 
 	         // 영화관 등록
-	         Theater theater = manager.registerTheater("구미영화관", staffs1); /// yeom
-	         staff.setTheater(theater); /// yeom
-	         staffs1.add(staff); /// yeom
-	         theater.setTotalStaff(staffs1); /// yeom
+	         Theater theater = manager.registerTheater("구미영화관", staffs1);
+	         staff.setTheater(theater);
+	         staffs1.add(staff);
+	         theater.setTotalStaff(staffs1);
 	         em.persist(theater);
 
-	         /// yeom
+
 	         // 영화1
 	         Movie movie1 = new Movie(manager, "노트북", "노트북 감독", LocalDate.of(2020, 11, 20));
 	         movie1.setStory("로맨스");
@@ -126,7 +126,7 @@ public class JpaMain {
 	         Client client = new Client();
 	         client.setRpn("991125-*******");
 	         client.setEmail("wldms01125@kumoh.ac.kr");
-	         client.setName("천지은");
+	         client.setName("고객1");
 	         client.setPassword("5781");
 	         client.setPhoneNumber("010-8645-1131");
 	         em.persist(client);
@@ -155,6 +155,7 @@ public class JpaMain {
 	         rs3.setReservation(reservation1);
 	         rs3.setSeat(seat7);
 	         em.persist(rs3);
+	         reservation1.getMs().getMovie().getStatistics().total(reservation1.getSeatNum());
 	         
 
 	         // 가장 첫번째 계좌로 계산
@@ -170,6 +171,7 @@ public class JpaMain {
 	         rs4.setReservation(reservation2);
 	         rs4.setSeat(seat8);
 	         em.persist(rs4);
+	         reservation2.getMs().getMovie().getStatistics().total(reservation2.getSeatNum());
 
 	         // 가장 첫번째 계좌로 계산
 	         Billing billing2 = client.pay(theater, reservation2, client.getAccount().get(0));
@@ -186,12 +188,21 @@ public class JpaMain {
 				System.out.print(client.getReservation().get(0).getRs().get(i).getSeat().getName()+" ");
 			System.out.println();
 			System.out.println("상영관 : "+client.getReservation().get(0).getRs().get(0).getSeat().getScreenhall().getName());
-//			System.out.println("상영영화 : "+client.getReservation().get(0).getRs().get(0).getMs().getMovie().getName());
-//			System.out.println("상영시간 : "+client.getReservation().get(0).getRs().get(0).getMs().getStartTime()+" ~ "+client.getReservation().get(0).getRs().get(0).getMs().getEndTime());
+			System.out.println("상영영화 : "+client.getReservation().get(0).getMs().getMovie().getName());
+			System.out.println("상영시간 : "+client.getReservation().get(0).getMs().getStartTime()+" ~ "+client.getReservation().get(0).getMs().getEndTime());
+			System.out.println("=====================================\n");
 			
 			
-			
-			//System.out.println("고객1의 예매2 정보 : "+client.getReservation().get(1));
+			System.out.println("=========== 고객1의 예매2 정보 ===========");
+			System.out.println("예매일 : "+client.getReservation().get(1).getReserveDate());
+			System.out.print("예매좌석 : ");
+			for (int i=0;i<client.getReservation().get(1).getSeatNum();i++)
+				System.out.print(client.getReservation().get(1).getRs().get(i).getSeat().getName()+" ");
+			System.out.println();
+			System.out.println("상영관 : "+client.getReservation().get(1).getRs().get(0).getSeat().getScreenhall().getName());
+			System.out.println("상영영화 : "+client.getReservation().get(1).getMs().getMovie().getName());
+			System.out.println("상영시간 : "+client.getReservation().get(1).getMs().getStartTime()+" ~ "+client.getReservation().get(1).getMs().getEndTime());
+			System.out.println("=====================================\n");
 
 			tx.commit();
 		} catch (Exception e) {
