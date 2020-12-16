@@ -28,6 +28,8 @@ public class Client extends User {
 		Billing billing = new Billing(theater.getName(), reservation.getPrice());
 		billing.setAccount(account);
 		billing.check();
+		if (billing.getStatus().toString().equals("SUCCESS"))
+			theater.setTotalAmounts(theater.getTotalAmounts()+reservation.getPrice());
 		reservation.setBilling(billing);
 		return billing;
 	}

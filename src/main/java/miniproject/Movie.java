@@ -32,17 +32,14 @@ public class Movie extends BaseEntity {
 	@OneToMany(mappedBy = "movie")
 	private List<MovieSchedule> ms = new ArrayList<MovieSchedule>();
 
-	/////////// jieun///////////getter,setter도 추가
 	@OneToMany(mappedBy = "movie")
 	private List<MovieReview> mr = new ArrayList<MovieReview>();
 
 	@OneToOne
 	@JoinColumn(name = "STATISTICS_ID")
 	private Statistics statistics;
-	///////////jieun///////////
 
-	/// yeom
-	// 생성자
+
 	public Movie() {
 	}
 
@@ -136,6 +133,22 @@ public class Movie extends BaseEntity {
 
 	public void setMs(List<MovieSchedule> ms) {
 		this.ms = ms;
+	}
+
+	public List<MovieReview> getMr() {
+		return mr;
+	}
+
+	public void setMr(List<MovieReview> mr) {
+		this.mr = mr;
+	}
+
+	public Statistics getStatistics() {
+		return statistics;
+	}
+
+	public void setStatistics(Statistics statistics) {
+		this.statistics = statistics;
 	}
 
 }

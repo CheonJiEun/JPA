@@ -13,7 +13,7 @@
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_study?serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/miniproject?serverTimezone=UTC" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="mymariadb" />
 

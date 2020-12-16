@@ -27,7 +27,7 @@ public class Manager extends User {
 		Theater theater = new Theater();
 		theater.setClosedDay(LocalDate.of(2020, 12, 25));
 		theater.setName(name);
-		theater.setTotalAmounts(100000);
+		theater.setTotalAmounts(0);
 		theater.setTotalStaff(staffs); /// yeom
 		return theater;
 	}
